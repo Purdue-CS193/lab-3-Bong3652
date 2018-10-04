@@ -28,18 +28,23 @@ public class MathUtils {
         /* Multiply the result by the base exp times
             Ex: base = 2, exp = 2
                --> res = 2, then res = 4 */
-        if (exp == 1) {
-            return base;
-        } else if (exp == 0) {
-            return 1;
-        } else {
-            for (int i = 0; i < exp; i++) {
-                res *= base;
+        if (!isNegative) {
+            if (exp == 1) {
+                return base;
+            } else if (exp == 0) {
+                return 1;
+            } else {
+                for (int i = 0; i < exp - 1; i++) {
+                    res *= base;
+                }
             }
         }
 
         /* If it's a negative exponent, we should invert it! */
         if (isNegative) {
+            for (int i = 0; i < exp - 1; i++) {
+                res *= base;
+            }
             double dividedRes = divideNumbers(1, res);
             return dividedRes;
         }
